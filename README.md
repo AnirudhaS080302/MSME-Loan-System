@@ -210,14 +210,3 @@ Contributions are welcome!
 * Create a new branch
 * Submit a PR
 
----
-
-## License
-
-This project is for educational purposes.
-
----
-
-## Author
-
-Developed as part of a MERN stack project for MSME loan decisioning.
