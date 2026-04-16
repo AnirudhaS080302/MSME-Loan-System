@@ -38,18 +38,48 @@ A full-stack MERN application that enables MSMEs (Micro, Small, and Medium Enter
 
 ```
 backend/
-  ├── routes/
-  ├── controllers/
-  ├── services/
-  ├── models/
-  ├── middleware/
-  └── decisionEngine/
+  msme-lending-api/
+  ├── src/
+  │   ├── config/
+  │   │   └── db.js
+  │   ├── controllers/
+  │   │   ├── businessController.js
+  │   │   └── loanController.js
+  │   ├── middlewares/
+  │   │   └── validate.js
+  │   ├── models/
+  │   │   ├── BusinessProfile.js
+  │   │   └── LoanApplication.js
+  │   ├── routes/
+  │   │   ├── businessRoutes.js
+  │   │   └── loanRoutes.js
+  │   ├── services/
+  │   │   └── creditEngine.js
+  │   └── app.js
+  ├── server.js
+  ├── .env
+  ├── package.json
+  └── package-lock.json
 
 frontend/
+  msme-lending-frontend/
+  ├── public/
   ├── src/
-  │   ├── pages/
   │   ├── components/
-  │   └── App.js
+  │   │   ├── BusinessForm.jsx
+  │   │   ├── DecisionResult.jsx
+  │   │   ├── LoanForm.jsx
+  │   │   └── Navbar.jsx
+  │   ├── pages/
+  │   │   ├── BusinessPage.jsx
+  │   │   ├── HomePage.jsx
+  │   │   └── LoanPage.jsx
+  │   ├── App.js
+  │   ├── App.css
+  │   ├── index.js
+  │   └── index.css
+  ├── .gitignore
+  ├── package.json
 ```
 
 ---
