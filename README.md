@@ -1,89 +1,193 @@
 # MSME Lending Decision System
 
-Overview
-This system enables MSMEs to:
+A full-stack MERN application that enables MSMEs (Micro, Small, and Medium Enterprises) to apply for loans and receive instant credit decisions based on a rule-based scoring engine.
 
-Register their business profile
-Submit loan applications
-Get instant credit decisions with risk scoring & reason codes
-View approval/rejection with explanations
-Built for speed, scalability, and regulatory compliance — perfect for fintech startups or internal lending
+---
 
-# Tech Stack
-Layer	Technology
-Backend	Node.js, Express, MongoDB, Mongoose
-Frontend	React, React Router, Bootstrap
-Validation	Custom middleware + Zod (optional)
-API Testing	Postman + Swagger (future)
-Deployment	Docker-ready (future)
+## Features
 
+* Business registration with PAN and revenue details
+* Loan application submission
+* 5-factor credit scoring system (0–1000)
+* Instant loan approval/rejection
+* Clear reason codes for decisions
+* Clean and modular architecture (MVC)
 
-Project Structure
-msme-lending-system/
-├── backend/
-│   ├── src/
-│   │   ├── config/         # DB, env, logging
-│   │   ├── controllers/    # Business, Loan, Decision
-│   │   ├── models/         # Business, Loan, CreditScore
-│   │   ├── routes/         # API endpoints
-│   │   ├── services/       # BusinessService, LoanService, DecisionEngine
-│   │   ├── middleware/     # Validation, error handling, logging
-│   │   └── app.js          # Express server
-│   └── package.json
-│
-msme-lending-frontend/
-│
-├── node_modules/
-├── public/
-│
-├── src/
-│   ├── components/        # Reusable UI components
-│   │   ├── BusinessForm.jsx
-│   │   ├── DecisionResult.jsx
-│   │   ├── LoanForm.jsx
-│   │   └── Navbar.jsx
-│   │
-│   ├── pages/             # Page-level components
-│   │   ├── BusinessPage.jsx
-│   │   ├── HomePage.jsx
-│   │   └── LoanPage.jsx
-│   │
-│   ├── App.css
-│   ├── App.js
-│   ├── index.css
-│   ├── index.js
-│   ├── logo.svg
-│   ├── reportWebVitals.js
-│   └── setupTests.js
-│
-├── .gitignore
-├── package-lock.json
-├── package.json
-└── README.md
+---
 
-## Overview
-A lightweight, end-to-end lending decision system for MSME businesses.
+## Tech Stack
 
-## Setup Guide
-1. Clone the repo
-2. Install dependencies: `npm install`
-3. Start backend: `npm run dev`
-4. Start frontend: `npm start`
+### Frontend
 
+* React.js
+* React Router
+* Bootstrap
 
+### Backend
 
-## Credit Decision Engine (Backend Logic)
+* Node.js
+* Express.js
 
-The decision engine evaluates:
-Signal	Weight	Rule
-Revenue-to-EMI Ratio	30%	Must be ≥ 3x
-Loan-to-Revenue Multiple	25%	Must be ≤ 3x
-Tenure-adjusted Risk	20%	Longer tenure = higher risk
-Fraud Checks	15%	PAN validation, duplicate business
-Industry Risk	10%	Retail = low, Manufacturing = medium
+### Database
 
-Contact
-Have questions? Need help? Reach out!
+* MongoDB (Mongoose)
 
-📧 Email: anirudha.s8032@gmail.com
-🐙 GitHub: https://github.com/AnirudhaS08
+---
+
+## Project Structure
+
+```
+backend/
+  ├── routes/
+  ├── controllers/
+  ├── services/
+  ├── models/
+  ├── middleware/
+  └── decisionEngine/
+
+frontend/
+  ├── src/
+  │   ├── pages/
+  │   ├── components/
+  │   └── App.js
+```
+
+---
+
+## Installation & Setup
+
+### 1. Clone Repository
+
+```
+git clone <your-repo-link>
+cd MSME-Loan-System
+```
+
+### 2. Backend Setup
+
+```
+cd backend
+npm install
+```
+
+Create a `.env` file:
+
+```
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+```
+
+Run backend:
+
+```
+npm start
+```
+
+### 3. Frontend Setup
+
+```
+cd frontend
+npm install
+npm start
+```
+
+Frontend runs on: `http://localhost:3000`
+Backend runs on: `http://localhost:5000`
+
+---
+
+## API Endpoints
+
+### Business
+
+* `POST /api/business` → Register business
+
+### Loan
+
+* `POST /api/loan/apply` → Apply for loan
+
+### Decision
+
+* Returns:
+
+```
+{
+  score: number,
+  decision: "Approved" | "Rejected",
+  reasons: string[]
+}
+```
+
+---
+
+## Decision Logic
+
+The system uses a weighted scoring model:
+
+| Factor               | Weight |
+| -------------------- | ------ |
+| Revenue-to-EMI Ratio | 30%    |
+| Loan-to-Revenue      | 25%    |
+| Tenure Risk          | 20%    |
+| PAN Validation       | 15%    |
+| Industry Risk        | 10%    |
+
+---
+
+## Known Limitations
+
+* No authentication (MVP only)
+* Rule-based scoring (no ML model)
+* Limited validation
+* No automated tests
+
+---
+
+## Future Improvements
+
+* JWT Authentication
+* Machine Learning scoring model
+* Integration with CIBIL/GST APIs
+* Docker & CI/CD
+* Cloud deployment (AWS/GCP)
+* Admin dashboard & analytics
+
+---
+
+## Common Issues & Fixes
+
+* **404 Error** → Check route order
+* **Empty request body** → Set `Content-Type: application/json`
+* **PAN validation error** → Ensure uppercase format
+* **MongoDB disconnects** → Add retry logic
+
+---
+
+## Assumptions
+
+* PAN is unique per business
+* Revenue is self-declared
+* Loan purpose not included in scoring
+* Currency: INR (₹)
+
+---
+
+## Contribution
+
+Contributions are welcome!
+
+* Fork the repo
+* Create a new branch
+* Submit a PR
+
+---
+
+## License
+
+This project is for educational purposes.
+
+---
+
+## Author
+
+Developed as part of a MERN stack project for MSME loan decisioning.
